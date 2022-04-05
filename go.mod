@@ -1,4 +1,4 @@
-module govader_backend
+module github.com/PIMPfiction/govader-backend-echo
 
 go 1.18
 
