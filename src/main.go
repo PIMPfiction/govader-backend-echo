@@ -1,49 +1,18 @@
 package main
 
-//5 minutes
 import (
-	"github.com/jonreiter/govader"
+	"fmt"
+
+	vaderMicro "github.com/PIMPfiction/govader_backend"
 	echo "github.com/labstack/echo/v4"
 )
 
-type RequestType struct {
-	Text string `json:"text"`
-}
-
-type Handler struct {
-	analyzer *govader.SentimentIntensityAnalyzer
-}
-
-func (h Handler) HandleGetRequest(c echo.Context) error {
-
-	// var request RequestType
-	// c.Bind(request)
-	text := c.QueryParam("text")
-	if text == "" {
-		return c.JSON(400, map[string]string{"error": "?text= parameter is required"})
-	}
-	score := h.analyzer.PolarityScores(text)
-	return c.JSON(200, score)
-}
-
-func (h Handler) HandlePostRequest(c echo.Context) error {
-
-	var request RequestType
-	c.Bind(request)
-	if request.Text == "" {
-		return c.JSON(400, map[string]string{"error": "?text= parameter is required"})
-	}
-	score := h.analyzer.PolarityScores(request.Text)
-	return c.JSON(200, score)
-}
-
 func main() {
 	e := echo.New()
-	handler := Handler{
-		analyzer: govader.NewSentimentIntensityAnalyzer(),
+	err := vaderMicro.Serve(e, "8080")
+	if err != nil {
+		panic(err)
 	}
-	e.GET("/", handler.HandleGetRequest)
-	e.POST("/", handler.HandlePostRequest)
-	e.Logger.Fatal(e.Start(":8080"))
+	fmt.Scanln()
 
 }
