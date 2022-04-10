@@ -3,13 +3,14 @@
 
 Govader-Backend is based on GoVader Package[https://github.com/jonreiter/govader](https://github.com/jonreiter/govader)
 
+Main Package Repository is Govader-Backend(https://github.com/PIMPfiction/govader_backend)
 
 ## Usage:
 
 ### Clone this Repo and run
 ```sh
-git clone https://github.com/pimfiction/govader-backend-echo
-cd govader-backend-echo
+git clone https://github.com/pimfiction/govader-backend-sample
+cd govader-backend-sample
 go run src/main.go
 ```
 
