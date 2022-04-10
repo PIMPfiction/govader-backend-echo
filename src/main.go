@@ -9,7 +9,7 @@ import (
 
 func main() {
 	e := echo.New()
-	err := vaderMicro.Serve(e, "8080")
+	err := vaderMicro.Serve(e, "80")
 	if err != nil {
 		panic(err)
 	}
